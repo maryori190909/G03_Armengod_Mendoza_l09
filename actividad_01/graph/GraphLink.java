@@ -61,5 +61,13 @@ public void removeEdge(E v1, E v2) {
         }
     }
 
+    public void dfs(E start) {
+        Vertex<E> startVertex = listVertex.searchRef(new Vertex<>(start));
+        if (startVertex == null) return;
+
+        ListLinked<Vertex<E>> visit = new ListLinked<>();
+        dfs_ayu(startVertex, visit);
+    }
+
 
 }
