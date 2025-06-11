@@ -69,5 +69,19 @@ public void removeEdge(E v1, E v2) {
         dfs_ayu(startVertex, visit);
     }
 
+    private void dfs_ayu(Vertex<E> vertex, ListLinked<Vertex<E>> visit) {
+        System.out.print(vertex.getData() + " ");
+        visit.insert_Sig(vertex);
+
+        Node<Edge<E>> actual = vertex.getListAdj().getHead();
+        while (actual != null) {
+            Vertex<E> vecino = actual.data.getRefDest();
+            if (!visit.search(vecino)) {
+                dfsHelper(vecino, visit);
+            }
+            actual = actual.next;
+        }
+    }
+
 
 }
