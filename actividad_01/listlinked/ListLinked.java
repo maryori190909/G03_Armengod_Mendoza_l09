@@ -12,11 +12,22 @@ public class ListLinked<T> {
             head = newNode;
             return;
         }
-        Node<T> current = head;
-        while (current.next != null) {
-            current = current.next;
+        Node<T> actual = head;
+        while (actual.next != null) {
+            actual = actual.next;
         }
-        current.next = newNode;
+        actual.next = newNode;
+    }
+
+    public boolean search(T data) {
+        Node<T> actual = head;
+        while (actual != null) {
+            if (actual.data.equals(data)) {
+                return true;
+            }
+            actual = actual.next;
+        }
+        return false;
     }
 
 }
