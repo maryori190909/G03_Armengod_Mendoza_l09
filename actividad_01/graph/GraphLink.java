@@ -41,4 +41,13 @@ public class GraphLink<E> {
         return false;
     }
 
+    public void removeEdge(E v1, E v2) {
+        Vertex<E> vertex1 = listVertex.searchRef(new Vertex<>(v1));
+        Vertex<E> vertex2 = listVertex.searchRef(new Vertex<>(v2));
+        if (vertex1 != null && vertex2 != null) {
+            vertex1.getListAdj().remove(new Edge<>(vertex2));
+            vertex2.getListAdj().remove(new Edge<>(vertex1));
+        }
+    }
+
 }
