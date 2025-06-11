@@ -24,4 +24,11 @@ public class Edge<E> {
         }
         return false;
     }
+
+    @Override
+    public String toString() {
+        if (weight == -1)
+            return refDest.getData().toString();
+        return refDest.getData().toString() + "[" + weight + "]";
+    }
 }
