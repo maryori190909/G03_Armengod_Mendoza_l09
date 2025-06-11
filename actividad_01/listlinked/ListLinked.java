@@ -41,5 +41,23 @@ public class ListLinked<T> {
         return null;
     }
 
+    public void remove(T data) {
+        if (head == null) return;
+
+        if (head.data.equals(data)) {
+            head = head.next;
+            return;
+        }
+
+        Node<T> actual = head;
+        while (actual.next != null && !actual.next.data.equals(data)) {
+            actual = actual.next;
+        }
+
+        if (actual.next != null) {
+            actual.next = actual.next.next;
+        }
+    }
+
 
 }
