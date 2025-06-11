@@ -7,4 +7,17 @@ public class Vertex <E> {
         listAdj = new ListLinked<Edge<E>>();
     }
 
+    public E getData() {
+        return data;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (o instanceof Vertex<?>) {
+            Vertex<?> v = (Vertex<?>) o;
+            return this.data.equals(v.data);
+        }
+        return false;
+    }
+
 }
