@@ -1,4 +1,9 @@
-import java.util.Iterator;
-public class ListLinked {
+
+public class ListLinked<T> {
+    private Node<T> head;
+
+    public ListLinked() {
+        head = null;
+    }
 
 }
