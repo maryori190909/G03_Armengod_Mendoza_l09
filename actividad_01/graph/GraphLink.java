@@ -83,5 +83,9 @@ public void removeEdge(E v1, E v2) {
         }
     }
 
+    @Override
+    public String toString() {
+        return listVertex.toString();
+    }
 
 }
