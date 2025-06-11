@@ -15,4 +15,17 @@ public class GraphLink<E> {
         }
     }
 
+    public void insertEdge(E v1, E v2) {
+        Vertex<E> vertex1 = listVertex.searchRef(new Vertex<>(v1));
+        Vertex<E> vertex2 = listVertex.searchRef(new Vertex<>(v2));
+        if (vertex1 != null && vertex2 != null) {
+            if (!vertex1.getListAdj().search(new Edge<>(vertex2))) {
+                vertex1.getListAdj().insert_Sig(new Edge<>(vertex2));
+            }
+            if (!vertex2.getListAdj().search(new Edge<>(vertex1))) {
+                vertex2.getListAdj().insert_Sig(new Edge<>(vertex1));
+            }
+        }
+    }
+
 }
