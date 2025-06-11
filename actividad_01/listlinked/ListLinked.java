@@ -30,4 +30,16 @@ public class ListLinked<T> {
         return false;
     }
 
+    public T searchRef(T data) {
+        Node<T> actual = head;
+        while (actual != null) {
+            if (actual.data.equals(data)) {
+                return actual.data;
+            }
+            actual = actual.next;
+        }
+        return null;
+    }
+
+
 }
