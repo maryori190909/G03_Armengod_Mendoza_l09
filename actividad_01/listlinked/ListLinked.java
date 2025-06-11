@@ -74,5 +74,4 @@ public class ListLinked<T> {
         return res;
     }
 
-
 }
