@@ -40,8 +40,7 @@ public class GraphLink<E> {
         }
         return false;
     }
-
-    public void removeEdge(E v1, E v2) {
+public void removeEdge(E v1, E v2) {
         Vertex<E> vertex1 = listVertex.searchRef(new Vertex<>(v1));
         Vertex<E> vertex2 = listVertex.searchRef(new Vertex<>(v2));
         if (vertex1 != null && vertex2 != null) {
@@ -53,10 +52,10 @@ public class GraphLink<E> {
     public void removeVertex(E data) {
         Vertex<E> vertex = listVertex.searchRef(new Vertex<>(data));
         if (vertex != null) {
-            Node<Vertex<E>> current = listVertex.getHead();
-            while (current != null) {
-                current.data.getListAdj().remove(new Edge<>(vertex));
-                current = current.next;
+            Node<Vertex<E>> actual = listVertex.getHead();
+            while (actual != null) {
+                actual.data.getListAdj().remove(new Edge<>(vertex));
+                actual = actual.next;
             }
             listVertex.remove(vertex);
         }
