@@ -26,4 +26,9 @@ public class Vertex <E> {
         return false;
     }
 
+     @Override
+    public String toString() {
+        return data + " --> " + listAdj.toString();
+    }
 }
+
