@@ -59,5 +59,9 @@ public class ListLinked<T> {
         }
     }
 
+    public Node<T> getHead() {
+        return head;
+    }
+
 
 }
