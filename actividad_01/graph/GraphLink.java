@@ -28,4 +28,17 @@ public class GraphLink<E> {
         }
     }
 
+    public boolean searchVertex(E data) {
+        return listVertex.search(new Vertex<>(data));
+    }
+
+    public boolean searchEdge(E v1, E v2) {
+        Vertex<E> vertex1 = listVertex.searchRef(new Vertex<>(v1));
+        Vertex<E> vertex2 = listVertex.searchRef(new Vertex<>(v2));
+        if (vertex1 != null && vertex2 != null) {
+            return vertex1.getListAdj().search(new Edge<>(vertex2));
+        }
+        return false;
+    }
+
 }
