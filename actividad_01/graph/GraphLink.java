@@ -9,4 +9,10 @@ public class GraphLink<E> {
         listVertex = new ListLinked<>();
     }
 
+    public void insertVertex(E data) {
+        if (!listVertex.search(new Vertex<>(data))) {
+            listVertex.insert_Sig(new Vertex<>(data));
+        }
+    }
+
 }
