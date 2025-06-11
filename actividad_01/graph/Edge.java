@@ -15,4 +15,13 @@ public class Edge<E> {
     public Vertex<E> getRefDest() {
         return refDest;
     }
+
+    @Override
+    public boolean equals(Object o) {
+        if (o instanceof Edge<?>) {
+            Edge<E> e = (Edge<E>) o;
+            return this.refDest.equals(e.refDest);
+        }
+        return false;
+    }
 }
