@@ -63,5 +63,16 @@ public class ListLinked<T> {
         return head;
     }
 
+    @Override
+    public String toString() {
+        String res = "";
+        Node<T> actual = head;
+        while (actual != null) {
+            res += actual.data.toString() + " ";
+            actual = actual.next;
+        }
+        return res;
+    }
+
 
 }
