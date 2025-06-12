@@ -214,6 +214,11 @@ public class GraphLink<E> {
         
     }
 
+    public boolean isConexo() {
+
+    
+        }
+
 
 }
 
