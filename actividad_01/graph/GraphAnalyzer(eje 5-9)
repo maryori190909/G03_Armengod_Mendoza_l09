@@ -1,6 +1,5 @@
 package graph;
 
-import graph.*;
 import listlinked.*;
 import java.util.*;
 public class GraphAnalyzer <E> {
@@ -11,12 +10,12 @@ public class GraphAnalyzer <E> {
     }
 
     public int gradoNodo(E data) {
-        Vertex<E> v = graph.listVertex.searchRef(new Vertex<>(data));
+        Vertex<E> v = grafo.listVertex.searchRef(new Vertex<>(data));
         return (v != null) ? v.getListAdj().size() : -1;
     }
 
     private boolean esSimetrico() {
-        for (Node<Vertex<E>> n = graph.listVertex.getHead(); n != null; n = n.next) {
+        for (Node<Vertex<E>> n = grafo.listVertex.getHead(); n != null; n = n.next) {
             Vertex<E> v = n.data;
             for (Node<Edge<E>> e = v.getListAdj().getHead(); e != null; e = e.next) {
                 Vertex<E> destino = e.data.getRefDest();
@@ -31,7 +30,7 @@ public class GraphAnalyzer <E> {
     public boolean esCamino() {
         if (!esSimetrico()) return false;
         int extremos = 0;
-        for (Node<Vertex<E>> n = graph.listVertex.getHead(); n != null; n = n.next) {
+        for (Node<Vertex<E>> n = grafo.listVertex.getHead(); n != null; n = n.next) {
             int grado = n.data.getListAdj().size();
             if (grado == 1) extremos++;
             else if (grado != 2) return false;
@@ -41,10 +40,34 @@ public class GraphAnalyzer <E> {
 
     public boolean esCiclo() {
         if (!esSimetrico()) return false;
-        for (Node<Vertex<E>> n = graph.listVertex.getHead(); n != null; n = n.next) {
+        for (Node<Vertex<E>> n = grafo.listVertex.getHead(); n != null; n = n.next) {
             if (n.data.getListAdj().size() != 2) return false;
         }
         return true;
     }
-}
 
+    public boolean esRueda() {
+        if (!esSimetrico()) return false;
+        int n = grafo.listVertex.size();
+        if (n < 4) return false;
+        int centro = 0;
+        int periferia = 0;
+        for (Node<Vertex<E>> v = grafo.listVertex.getHead(); v != null; v = v.next) {
+            int grado = v.data.getListAdj().size();
+            if (grado == n - 1) centro++;
+            else if (grado == 3) periferia++;
+            else return false;
+        }
+        return centro == 1 && periferia == n - 1;
+    }
+
+    public boolean esCompleto() {
+        if (!esSimetrico()) return false;
+        int n = grafo.listVertex.size();
+        for (Node<Vertex<E>> v = grafo.listVertex.getHead(); v != null; v = v.next) {
+            if (v.data.getListAdj().size() != n - 1) return false;
+        }
+        return true;
+    }
+
+}
