@@ -1,1 +1,55 @@
+import graph.*;
+import java.util.*;
 
+public class Main {
+
+    public static void main(String[] args) {
+        GraphLink<String> grafo = new GraphLink<>();
+
+        grafo.insertVertex("A");
+        grafo.insertVertex("B");
+        grafo.insertVertex("C");
+        grafo.insertVertex("D");
+        grafo.insertVertex("E");
+
+        grafo.insertEdgeWeight("A", "B", 4);
+        grafo.insertEdgeWeight("A", "C", 2);
+        grafo.insertEdgeWeight("B", "C", 1);
+        grafo.insertEdgeWeight("B", "D", 5);
+        grafo.insertEdgeWeight("C", "D", 8);
+        grafo.insertEdgeWeight("D", "E", 6);
+
+        System.out.println("Recorrido BFS desde A:");
+        grafo.bfs("A");
+
+        System.out.println("\n\nCamino BFS de A a E:");
+        ArrayList<String> caminoBFS = grafo.bfsPath("A", "E");
+        if (caminoBFS != null && !caminoBFS.isEmpty()) {
+            System.out.println(caminoBFS);
+        } else {
+            System.out.println("No se encontro camino.");
+        }
+
+        System.out.println("\nRuta mas corta de A a E (Dijkstra):");
+        ArrayList<String> caminoCorto = grafo.shortPath("A", "E");
+        if (caminoCorto != null && !caminoCorto.isEmpty()) {
+            System.out.println(caminoCorto);
+        } else {
+            System.out.println("No hay ruta.");
+        }
+
+        System.out.println("\nEs conexo el grafo?");
+        System.out.println(grafo.isConexo());
+
+        System.out.println("\nRuta mas corta de A a E en stack:");
+        Stack<String> stackRuta = grafo.Dijkstra("A", "E");
+        while (!stackRuta.isEmpty()) {
+            System.out.print(stackRuta.pop());
+            if (!stackRuta.isEmpty()) System.out.print(" -> ");
+        }
+
+        System.out.println();
+
+    }
+
+}
