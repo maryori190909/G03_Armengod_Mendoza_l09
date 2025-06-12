@@ -10,5 +10,13 @@ public class VertexObj <V, E> {
         this.posi = posi;
     }
 
+    public V getInfo() {
+        return info;
+    }
+
+    public void setInfo(V info) {
+        this.info = info;
+    }
+
 }
 
