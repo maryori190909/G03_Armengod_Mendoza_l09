@@ -64,4 +64,32 @@ public class GraphListEdge <V, E> {
         return null;
     }
 
+    public void bfs(V start) {
+        Set<V> visit = new HashSet<>();
+        Queue<V> queue = new LinkedList<>();
+
+        queue.add(start);
+        visit.add(start);
+
+        while (!queue.isEmpty()) {
+            V actual = queue.poll();
+            System.out.print(actual + " ");
+
+            for (EdgeObj<V, E> edge : secEdge) {
+                V vecino = null;
+                if (edge.getEndVertex1().getInfo().equals(actual)) {
+                    vecino = edge.getEndVertex2().getInfo();
+                } else if (edge.getEndVertex2().getInfo().equals(actual)) {
+                    vecino = edge.getEndVertex1().getInfo();
+                }
+
+                if (vecino != null && !visit.contains(vecino)) {
+                    visit.add(vecino);
+                    queue.add(vecino);
+                }
+            }
+        }
+        System.out.println();
+    }
+
 }
