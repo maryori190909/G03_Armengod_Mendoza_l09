@@ -162,8 +162,16 @@ public class GraphLink<E> {
     }
 
     public void insertEdgeWeight(E v, E z, int w) {
+        Vertex<E> v1 = listVertex.searchRef(new Vertex<>(v));
+        Vertex<E> v2 = listVertex.searchRef(new Vertex<>(z));
+        if (v1 != null && v2 != null) {
+            v1.getListAdj().insert_Sig(new Edge<>(v2, w));
+            v2.getListAdj().insert_Sig(new Edge<>(v1, w));
+    }
         
     }
+
+
 
 }
 
