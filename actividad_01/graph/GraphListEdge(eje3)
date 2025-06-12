@@ -55,4 +55,13 @@ public class GraphListEdge <V, E> {
         return false;
     }
 
+    public VertexObj<V, E> getVertex(V v) {
+        for (VertexObj<V, E> vertex : secVertex) {
+            if (vertex.getInfo().equals(v)) {
+                return vertex;
+            }
+        }
+        return null;
+    }
+
 }
