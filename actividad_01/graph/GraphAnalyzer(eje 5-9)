@@ -70,4 +70,26 @@ public class GraphAnalyzer <E> {
         return true;
     }
 
+    public void representacionFormal() {
+        System.out.println("Vertices:");
+        for (Node<Vertex<E>> n = grafo.listVertex.getHead(); n != null; n = n.next) {
+            System.out.print(n.data.getData() + " ");
+        }
+        System.out.println("\nAristas:");
+        Set<String> set = new HashSet<>();
+        for (Node<Vertex<E>> n = grafo.listVertex.getHead(); n != null; n = n.next) {
+            Vertex<E> v = n.data;
+            Node<Edge<E>> e = v.getListAdj().getHead();
+            while (e != null) {
+                String id = v.getData() + "-" + e.data.getRefDest().getData();
+                String rev = e.data.getRefDest().getData() + "-" + v.getData();
+                if (!set.contains(rev)) {
+                    System.out.println(id);
+                    set.add(id);
+                }
+                e = e.next;
+            }
+        }
+    }
+
 }
