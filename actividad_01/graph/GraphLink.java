@@ -77,7 +77,7 @@ public void removeEdge(E v1, E v2) {
         while (actual != null) {
             Vertex<E> vecino = actual.data.getRefDest();
             if (!visit.search(vecino)) {
-                dfsHelper(vecino, visit);
+                dfs_ayu(vecino, visit);
             }
             actual = actual.next;
         }
