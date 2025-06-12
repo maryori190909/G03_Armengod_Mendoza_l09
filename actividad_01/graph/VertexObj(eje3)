@@ -1,6 +1,14 @@
 package graph;
 
-public class VertexObj {
+public class VertexObj <V, E> {
+
+    protected V info;
+    protected int posi;
+
+    public VertexObj(V info, int posi) {
+        this.info = info;
+        this.posi = posi;
+    }
 
 }
 
