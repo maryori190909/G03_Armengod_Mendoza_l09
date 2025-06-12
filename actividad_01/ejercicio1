@@ -172,6 +172,14 @@ public class GraphLink<E> {
     }
 
     public ArrayList<E> shortPath(E v, E z) {
+
+    Map<Vertex<E>, Integer> dist = new HashMap<>();
+    Map<Vertex<E>, Vertex<E>> prev = new HashMap<>();
+    PriorityQueue<Vertex<E>> pq = new PriorityQueue<>(Comparator.comparingInt(dist::get));
+
+    for (Node<Vertex<E>> n = listVertex.getHead(); n != null; n = n.next) {
+        dist.put(n.data, Integer.MAX_VALUE);
+    }
         
     }
 
