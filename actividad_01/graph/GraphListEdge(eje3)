@@ -11,4 +11,10 @@ public class GraphListEdge <V, E> {
         this.secEdge = new ArrayList<>();
     }
 
+    public void insertVertex(V v) {
+        if (!searchVertex(v)) {
+            secVertex.add(new VertexObj<>(v, secVertex.size()));
+        }
+    }
+
 }
