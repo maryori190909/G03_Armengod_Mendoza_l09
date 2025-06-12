@@ -36,4 +36,13 @@ public class GraphListEdge <V, E> {
         }
     }
 
+    public boolean searchVertex(V v) {
+        for (VertexObj<V, E> vertex : secVertex) {
+            if (vertex.getInfo().equals(v)) {
+                return true;
+            }
+        }
+        return false;
+    }
+
 }
