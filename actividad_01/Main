@@ -25,6 +25,14 @@ public class Main {
         System.out.println("Existe la arista A-C? " + grafo.searchEdge("A", "C"));
         System.out.println("Existe la arista A-D? " + grafo.searchEdge("A", "D"));
 
+        grafo.removeEdge("A", "C");
+        System.out.println("\nDespues de eliminar la arista A-C:");
+        System.out.println(grafo);
+
+        grafo.removeVertex("B");
+        System.out.println("\nDespues de eliminar el vertice B:");
+        System.out.println(grafo);
+
     }
 
 }
