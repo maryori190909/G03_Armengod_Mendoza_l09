@@ -1,1 +1,66 @@
+import org.jgrapht.Graph;
+import org.jgrapht.GraphPath;
+import org.jgrapht.alg.cycle.CycleDetector;
+import org.jgrapht.alg.shortestpath.DijkstraShortestPath;
+import org.jgrapht.graph.DefaultEdge;
+import org.jgrapht.graph.SimpleGraph;
+import graph.*;
 
+public class Main {
+    public static void main(String[] args) {
+
+        GraphListEdge<String, String> grafo = new GraphListEdge<>();
+
+        grafo.insertVertex("A");
+        grafo.insertVertex("B");
+        grafo.insertVertex("C");
+        grafo.insertVertex("D");
+
+        grafo.insertEdge("A", "B");
+        grafo.insertEdge("A", "C");
+        grafo.insertEdge("B", "D");
+        grafo.insertEdge("C", "D");
+        grafo.insertEdge("A", "B");
+
+        System.out.println("Grafo creado");
+        grafo.printGraph();
+
+        System.out.println("\nExiste el vertice A? " + grafo.searchVertex("A"));
+        System.out.println("Existe la arista A-D? " + grafo.searchEdge("A", "D"));
+        System.out.println("Existe la arista C-D? " + grafo.searchEdge("C", "D"));
+
+        System.out.println("\nRecorrido BFS desde A:");
+        grafo.bfs("A");
+
+        System.out.println("\n EJEMPLO USANDO JGRAPHT");
+
+        Graph<String, DefaultEdge> jGraph = new SimpleGraph<>(DefaultEdge.class);
+
+        jGraph.addVertex("A");
+        jGraph.addVertex("B");
+        jGraph.addVertex("C");
+        jGraph.addVertex("D");
+
+        jGraph.addEdge("A", "B");
+        jGraph.addEdge("A", "C");
+        jGraph.addEdge("B", "D");
+        jGraph.addEdge("C", "D");
+
+        System.out.println("vertices del grafo: " + jGraph.vertexSet());
+        System.out.println("Aristas del grafo: " + jGraph.edgeSet());
+
+        CycleDetector<String, DefaultEdge> cycleDetector = new CycleDetector<>(jGraph);
+        boolean tieneCiclo = cycleDetector.detectCycles();
+        System.out.println("El grafo tiene ciclos? " + tieneCiclo);
+
+        DijkstraShortestPath<String, DefaultEdge> dijkstra = new DijkstraShortestPath<>(jGraph);
+        GraphPath<String, DefaultEdge> path = dijkstra.getPath("A", "D");
+
+        if (path != null) {
+            System.out.println("Camino mas corto de A a D: " + path.getVertexList());
+            System.out.println("Longitud del camino: " + path.getLength());
+        } else {
+            System.out.println("No hay camino de A a D");
+        }
+    }
+}
