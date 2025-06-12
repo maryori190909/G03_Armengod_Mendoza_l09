@@ -92,4 +92,16 @@ public class GraphListEdge <V, E> {
         System.out.println();
     }
 
+    public void printGraph() {
+        System.out.println("Vertices:");
+        for (VertexObj<V, E> v : secVertex) {
+            System.out.println(v);
+        }
+
+        System.out.println("Aristas:");
+        for (EdgeObj<V, E> e : secEdge) {
+            System.out.println(e);
+        }
+    }
+
 }
