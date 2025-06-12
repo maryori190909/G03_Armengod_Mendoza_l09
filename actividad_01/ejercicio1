@@ -122,6 +122,9 @@ public class GraphLink<E> {
     }
 
     public ArrayList<E> bfsPath(E v, E z) {
+        Vertex<E> start = listVertex.searchRef(new Vertex<>(v));
+        Vertex<E> end = listVertex.searchRef(new Vertex<>(z));
+        if (start == null || end == null) return null;
         
     }
 
