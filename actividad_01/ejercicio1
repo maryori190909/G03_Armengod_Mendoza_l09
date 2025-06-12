@@ -161,5 +161,9 @@ public class GraphLink<E> {
 
     }
 
+    public void insertEdgeWeight(E v, E z, int w) {
+        
+    }
+
 }
 
