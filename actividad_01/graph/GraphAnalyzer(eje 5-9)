@@ -1,6 +1,13 @@
 package graph;
 
-public class GraphAnalyzer {
+import listlinked.*;
+import java.util.*;
+public class GraphAnalyzer <E> {
+    private final GraphLink<E> grafo;
+
+    public GraphAnalyzer(GraphLink<E> grafo) {
+        this.grafo = grafo;
+    }
 
 }
 
