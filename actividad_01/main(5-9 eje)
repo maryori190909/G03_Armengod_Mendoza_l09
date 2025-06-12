@@ -1,1 +1,52 @@
+import graph.*;
+
+public class Main {
+    public static void main(String[] args) {
+        GraphLink<String> grafo = new GraphLink<>();
+
+        grafo.insertVertex("A");
+        grafo.insertVertex("B");
+        grafo.insertVertex("C");
+        grafo.insertVertex("D");
+        grafo.insertVertex("E");
+
+        grafo.insertEdge("A", "B");
+        grafo.insertEdge("B", "C");
+        grafo.insertEdge("C", "D");
+        grafo.insertEdge("D", "E");
+
+        GraphAnalyzer<String> analizador = new GraphAnalyzer<>(grafo);
+
+        System.out.println("Grado del nodo C: " + analizador.gradoNodo("C"));
+        System.out.println("Es Camino: " + analizador.esCamino());
+        System.out.println("Es Ciclo: " + analizador.esCiclo());
+        System.out.println("Es Rueda: " + analizador.esRueda());
+        System.out.println("Es Completo: " + analizador.esCompleto());
+        System.out.println("Es Conexo: " + analizador.esConexo());
+        System.out.println("Es Plano: " + analizador.esPlano());
+        System.out.println("Es Auto-Complementario: " + analizador.esAutoComplementario());
+
+        GraphLink<String> grafo2 = new GraphLink<>();
+        grafo2.insertVertex("A");
+        grafo2.insertVertex("B");
+        grafo2.insertVertex("C");
+        grafo2.insertVertex("D");
+        grafo2.insertVertex("E");
+        grafo2.insertEdge("A", "B");
+        grafo2.insertEdge("B", "C");
+        grafo2.insertEdge("C", "D");
+        grafo2.insertEdge("D", "E");
+
+        System.out.println("Es Isomorfo con grafo2: " + analizador.esIsomorfo(grafo2));
+
+        System.out.println("\nRepresentación Formal:");
+        analizador.representacionFormal();
+
+        System.out.println("\nLista de Adyacencia:");
+        analizador.representacionListaAdyacencia();
+
+        System.out.println("\nMatriz de Adyacencia:");
+        analizador.representacionMatrizAdyacencia();
+    }
+}
 
