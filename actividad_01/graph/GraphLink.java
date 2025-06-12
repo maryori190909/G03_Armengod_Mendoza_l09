@@ -1,5 +1,5 @@
-import listLinked.ListLinked;
-import listLinked.Node;
+import listlinked.ListLinked;
+import listlinked.Node;
 
 public class GraphLink<E> {
 
