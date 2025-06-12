@@ -1,5 +1,14 @@
 package graph;
 
+import java.util.ArrayList;
+import java.util.Comparator;
+import java.util.HashMap;
+import java.util.LinkedList;
+import java.util.Map;
+import java.util.PriorityQueue;
+import java.util.Queue;
+import java.util.Stack;
+
 import listlinked.ListLinked;
 import listlinked.Node;
 
@@ -92,7 +101,8 @@ public class GraphLink<E> {
     public String toString() {
         return listVertex.toString();
     }
-/////////////////////////
+    ////////////////////////////////////////////
+
     public void bfs(E v) {
 
     Vertex<E> start = listVertex.searchRef(new Vertex<>(v));
@@ -134,7 +144,6 @@ public class GraphLink<E> {
         visit.insert_Sig(start);
         padre.put(start, null);
 
-
         while (!queue.isEmpty()) {
         Vertex<E> actual = queue.poll();
         if (actual.equals(end)) break;
@@ -144,7 +153,7 @@ public class GraphLink<E> {
             Vertex<E> dest = vecino.data.getRefDest();
             if (!visit.search(dest)) {
                 queue.offer(dest);
-                vecino.insert_Sig(dest);
+                visit.insert_Sig(dest);
                 padre.put(dest, actual);
             }
             vecino = vecino.next;
@@ -168,11 +177,10 @@ public class GraphLink<E> {
             v1.getListAdj().insert_Sig(new Edge<>(v2, w));
             v2.getListAdj().insert_Sig(new Edge<>(v1, w));
     }
-        
+
     }
 
     public ArrayList<E> shortPath(E v, E z) {
-
     Map<Vertex<E>, Integer> dist = new HashMap<>();
     Map<Vertex<E>, Vertex<E>> prev = new HashMap<>();
     PriorityQueue<Vertex<E>> pq = new PriorityQueue<>(Comparator.comparingInt(dist::get));
@@ -190,19 +198,20 @@ public class GraphLink<E> {
 
     while (!pq.isEmpty()) {
         Vertex<E> actual = pq.poll();
-        Node<Edge<E>> vecino = actual.getListAdj().getHead();
-        while (vecino != null) {
-            Vertex<E> vecino = vecino.data.getRefDest();
-            int weight = vecino.data.getWeight();
-            int alt = dist.get(actual) + weight;
+        Node<Edge<E>> nodovecino = actual.getListAdj().getHead();
+        while (nodovecino != null) {
+            Vertex<E> destino = nodovecino.data.getRefDest();
+            int weight = nodovecino.data.getWeight();
 
-            if (alt < dist.getOrDefault(vecino, Integer.MAX_VALUE)) {
-                dist.put(vecino, alt);
-                prev.put(vecino, actual);
-                pq.remove(vecino);
-                pq.add(vecino);
+            int alt = dist.get(actual) + weight; // LÍNEA 204
+
+            if (alt < dist.getOrDefault(destino, Integer.MAX_VALUE)) {
+                dist.put(destino, alt);
+                prev.put(destino, actual);
+                pq.remove(destino); // actualización de prioridad
+                pq.add(destino);
             }
-            vecino = vecino.next;
+            nodovecino = nodovecino.next;
         }
     }
 
@@ -211,22 +220,20 @@ public class GraphLink<E> {
         path.add(0, at.getData());
     }
     return path;
-        
-    }
+}
 
     public boolean isConexo() {
-
-    if (listVertex.getHead() == null) return true;
-    ListLinked<Vertex<E>> visitados = new ListLinked<>();
-    dfs_ayu(listVertex.getHead().data, visitados);
+        if (listVertex.getHead() == null) return true;
+        ListLinked<Vertex<E>> visitados = new ListLinked<>();
+        dfs_ayu(listVertex.getHead().data, visitados);
         
-    int total = 0;
-    for (Node<Vertex<E>> n = listVertex.getHead(); n != null; n = n.next) total++;
+        int total = 0;
+        for (Node<Vertex<E>> n = listVertex.getHead(); n != null; n = n.next) total++;
 
-    return visitados.size() == total;
+        return visitados.size() == total;
 
-    
-        }
+    }
+
     public Stack<E> Dijkstra(E v, E w) {
         ArrayList<E> camino = shortPath(v, w);
         Stack<E> stack = new Stack<>();
@@ -234,7 +241,9 @@ public class GraphLink<E> {
             stack.push(camino.get(i));
         }
         return stack;
+
     }
+
 
 }
 
