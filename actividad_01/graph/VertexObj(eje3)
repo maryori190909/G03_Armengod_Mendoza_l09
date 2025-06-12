@@ -28,7 +28,8 @@ public class VertexObj <V, E> {
 
     @Override
     public String toString() {
-        return info.toString();
+        return info + " (" + posi + ")";
     }
+
 }
 
