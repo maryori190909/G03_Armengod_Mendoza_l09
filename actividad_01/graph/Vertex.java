@@ -1,4 +1,4 @@
-import listLinked.ListLinked;
+import listlinked.ListLinked;
 
 public class Vertex <E> {
     private E data;
