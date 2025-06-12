@@ -216,6 +216,15 @@ public class GraphLink<E> {
 
     public boolean isConexo() {
 
+    if (listVertex.getHead() == null) return true;
+    ListLinked<Vertex<E>> visitados = new ListLinked<>();
+    dfs_ayu(listVertex.getHead().data, visitados);
+        
+    int total = 0;
+    for (Node<Vertex<E>> n = listVertex.getHead(); n != null; n = n.next) total++;
+
+    return visitados.size() == total;
+
     
         }
 
