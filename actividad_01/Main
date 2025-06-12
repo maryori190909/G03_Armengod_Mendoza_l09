@@ -19,6 +19,12 @@ public class Main {
         System.out.println("Grafo:");
         System.out.println(grafo);
 
+        System.out.println("Existe el vetice A? " + grafo.searchVertex("A"));
+        System.out.println("Existe el vetice B?" + grafo.searchVertex("E"));
+
+        System.out.println("Existe la arista A-C? " + grafo.searchEdge("A", "C"));
+        System.out.println("Existe la arista A-D? " + grafo.searchEdge("A", "D"));
+
     }
 
 }
