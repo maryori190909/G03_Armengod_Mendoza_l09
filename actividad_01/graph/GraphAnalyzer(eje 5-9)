@@ -1,5 +1,6 @@
 package graph;
 
+import graph.*;
 import listlinked.*;
 import java.util.*;
 public class GraphAnalyzer <E> {
@@ -7,6 +8,24 @@ public class GraphAnalyzer <E> {
 
     public GraphAnalyzer(GraphLink<E> grafo) {
         this.grafo = grafo;
+    }
+
+    public int gradoNodo(E data) {
+        Vertex<E> v = graph.listVertex.searchRef(new Vertex<>(data));
+        return (v != null) ? v.getListAdj().size() : -1;
+    }
+
+    private boolean esSimetrico() {
+        for (Node<Vertex<E>> n = graph.listVertex.getHead(); n != null; n = n.next) {
+            Vertex<E> v = n.data;
+            for (Node<Edge<E>> e = v.getListAdj().getHead(); e != null; e = e.next) {
+                Vertex<E> destino = e.data.getRefDest();
+                if (!destino.getListAdj().search(new Edge<>(v))) {
+                    return false;
+                }
+            }
+        }
+        return true;
     }
 
 }
