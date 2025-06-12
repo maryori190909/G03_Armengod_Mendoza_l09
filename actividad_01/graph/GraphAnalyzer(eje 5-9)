@@ -159,22 +159,95 @@ public class GraphAnalyzer <E> {
     }
 
     public boolean esIsomorfo(GraphLink<E> otro) {
-        return grafo.listVertex.size() == otro.listVertex.size() && grafo.countEdges() == otro.countEdges();
+    if (this.grafo.listVertex.size() != otro.listVertex.size()) {
+        return false;
     }
+
+    int aristasEste = contarAristas(this.grafo);
+    int aristasOtro = contarAristas(otro);
+
+    if (aristasEste != aristasOtro) {
+        return false;
+    }
+
+    List<Integer> gradosEste = obtenerGrados(this.grafo);
+    List<Integer> gradosOtro = obtenerGrados(otro);
+
+    Collections.sort(gradosEste);
+    Collections.sort(gradosOtro);
+
+    return gradosEste.equals(gradosOtro);
+}
+
+private int contarAristas(GraphLink<E> g) {
+    int total = 0;
+    Node<Vertex<E>> actual = g.listVertex.getHead();
+    while (actual != null) {
+        total += actual.data.getListAdj().size();
+        actual = actual.next;
+    }
+    return total / 2;
+}
+
+private List<Integer> obtenerGrados(GraphLink<E> g) {
+    List<Integer> grados = new ArrayList<>();
+    Node<Vertex<E>> actual = g.listVertex.getHead();
+    while (actual != null) {
+        grados.add(actual.data.getListAdj().size());
+        actual = actual.next;
+    }
+    return grados;
+}
 
     public boolean esPlano() {
-        int n = grafo.listVertex.size();
-        int a = grafo.countEdges();
-        return a <= (3 * n - 6);
+    int V = 0;
+    int A = 0;
+
+    Node<Vertex<E>> actual = grafo.listVertex.getHead();
+    while (actual != null) {
+        V++;
+        Node<Edge<E>> adyacentes = actual.data.getListAdj().getHead();
+        while (adyacentes != null) {
+            A++;
+            adyacentes = adyacentes.next;
+        }
+        actual = actual.next;
     }
+
+    A = A / 2;
+
+    if (!grafo.isConexo()) {
+        System.out.println("El grafo no es conexo");
+        return false;
+    }
+
+    if (V >= 3 && A <= 3 * V - 6) {
+        return true;
+    } else {
+        return false;
+    }
+}
 
     public boolean esAutoComplementario() {
-        int n = grafo.listVertex.size();
-        int m = grafo.countEdges();
-        int complementarias = (n * (n - 1)) / 2 - m;
-        return m == complementarias;
+    int V = 0;
+    int A = 0;
+
+    Node<Vertex<E>> actual = grafo.listVertex.getHead();
+
+    while (actual != null) {
+        V++;
+        Node<Edge<E>> adyacentes = actual.data.getListAdj().getHead();
+        while (adyacentes != null) {
+            A++;
+            adyacentes = adyacentes.next;
+        }
+        actual = actual.next;
     }
 
+    A = A / 2;
+
+    return A == (V * (V - 1)) / 4;
+}
 
 
 }
