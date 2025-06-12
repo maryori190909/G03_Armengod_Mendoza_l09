@@ -38,5 +38,18 @@ public class EdgeObj <V, E> {
         this.endVertex2 = endVertex2;
     }
 
+    public int getPosition() {
+        return posi;
+    }
+
+    public void setPosition(int posi) {
+        this.posi = posi;
+    }
+
+    @Override
+    public String toString() {
+        return "(" + endVertex1 + " , " + endVertex2 + ")";
+    }
+
 }
 
