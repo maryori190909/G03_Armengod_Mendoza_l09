@@ -171,6 +171,9 @@ public class GraphLink<E> {
         
     }
 
+    public ArrayList<E> shortPath(E v, E z) {
+        
+    }
 
 
 }
