@@ -14,7 +14,11 @@ public class Main {
         grafo.insertEdge("A", "C");
         grafo.insertEdge("B", "D");
         grafo.insertEdge("C", "D");
-        
+
+
+        System.out.println("Grafo:");
+        System.out.println(grafo);
+
     }
 
 }
