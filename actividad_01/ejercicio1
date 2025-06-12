@@ -180,6 +180,13 @@ public class GraphLink<E> {
     for (Node<Vertex<E>> n = listVertex.getHead(); n != null; n = n.next) {
         dist.put(n.data, Integer.MAX_VALUE);
     }
+
+    Vertex<E> start = listVertex.searchRef(new Vertex<>(v));
+    Vertex<E> end = listVertex.searchRef(new Vertex<>(z));
+    if (start == null || end == null) return null;
+
+    dist.put(start, 0);
+    pq.add(start);
         
     }
 
