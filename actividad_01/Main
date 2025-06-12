@@ -33,6 +33,8 @@ public class Main {
         System.out.println("\nDespues de eliminar el vertice B:");
         System.out.println(grafo);
 
+        System.out.println("\nRecorrido DFS desde A:");
+        grafo.dfs("A");
     }
 
 }
