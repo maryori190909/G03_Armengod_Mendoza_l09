@@ -92,4 +92,47 @@ public class GraphAnalyzer <E> {
         }
     }
 
+    public void representacionListaAdyacencia() {
+        for (Node<Vertex<E>> n = grafo.listVertex.getHead(); n != null; n = n.next) {
+            System.out.print(n.data.getData() + ": ");
+            Node<Edge<E>> e = n.data.getListAdj().getHead();
+            while (e != null) {
+                System.out.print(e.data.getRefDest().getData() + " ");
+                e = e.next;
+            }
+            System.out.println();
+        }
+    }
+
+    public void representacionMatrizAdyacencia() {
+        List<E> vertices = new ArrayList<>();
+        for (Node<Vertex<E>> n = grafo.listVertex.getHead(); n != null; n = n.next) {
+            vertices.add(n.data.getData());
+        }
+        int n = vertices.size();
+        int[][] matriz = new int[n][n];
+
+        for (int i = 0; i < n; i++) {
+            Vertex<E> v = grafo.listVertex.searchRef(new Vertex<>(vertices.get(i)));
+            Node<Edge<E>> e = v.getListAdj().getHead();
+            while (e != null) {
+                int j = vertices.indexOf(e.data.getRefDest().getData());
+                matriz[i][j] = 1;
+                e = e.next;
+            }
+        }
+
+        System.out.print("    ");
+        for (E v : vertices) System.out.print(v + " ");
+        System.out.println();
+        for (int i = 0; i < n; i++) {
+            System.out.print(vertices.get(i) + " | ");
+            for (int j = 0; j < n; j++) {
+                System.out.print(matriz[i][j] + " ");
+            }
+            System.out.println();
+        }
+    }
+
+
 }
