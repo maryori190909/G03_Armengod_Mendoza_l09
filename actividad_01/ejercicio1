@@ -94,6 +94,15 @@ public class GraphLink<E> {
     }
 
      public void bfs(E v) {
+
+    Vertex<E> start = listVertex.searchRef(new Vertex<>(v));
+    if (start == null) return;
+
+    ListLinked<Vertex<E>> visited = new ListLinked<>();
+    Queue<Vertex<E>> queue = new LinkedList<>();
+
+    queue.offer(start);
+    visited.insert_Sig(start);
         
     }
 
