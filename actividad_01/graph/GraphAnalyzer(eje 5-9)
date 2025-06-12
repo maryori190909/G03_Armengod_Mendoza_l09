@@ -28,5 +28,23 @@ public class GraphAnalyzer <E> {
         return true;
     }
 
+    public boolean esCamino() {
+        if (!esSimetrico()) return false;
+        int extremos = 0;
+        for (Node<Vertex<E>> n = graph.listVertex.getHead(); n != null; n = n.next) {
+            int grado = n.data.getListAdj().size();
+            if (grado == 1) extremos++;
+            else if (grado != 2) return false;
+        }
+        return extremos == 2;
+    }
+
+    public boolean esCiclo() {
+        if (!esSimetrico()) return false;
+        for (Node<Vertex<E>> n = graph.listVertex.getHead(); n != null; n = n.next) {
+            if (n.data.getListAdj().size() != 2) return false;
+        }
+        return true;
+    }
 }
 
