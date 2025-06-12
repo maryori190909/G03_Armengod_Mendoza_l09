@@ -134,5 +134,29 @@ public class GraphAnalyzer <E> {
         }
     }
 
+    public boolean esConexo() {
+        Set<E> visitados = new HashSet<>();
+        Queue<E> cola = new LinkedList<>();
+
+        Node<Vertex<E>> inicio = grafo.listVertex.getHead();
+        if (inicio == null) return false;
+
+        cola.offer(inicio.data.getData());
+        visitados.add(inicio.data.getData());
+
+        while (!cola.isEmpty()) {
+            E actual = cola.poll();
+            Vertex<E> v = grafo.listVertex.searchRef(new Vertex<>(actual));
+            for (Node<Edge<E>> e = v.getListAdj().getHead(); e != null; e = e.next) {
+                E vecino = e.data.getRefDest().getData();
+                if (!visitados.contains(vecino)) {
+                    visitados.add(vecino);
+                    cola.offer(vecino);
+                }
+            }
+        }
+        return visitados.size() == grafo.listVertex.size();
+    }
+
 
 }
