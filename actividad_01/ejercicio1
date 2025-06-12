@@ -125,6 +125,14 @@ public class GraphLink<E> {
         Vertex<E> start = listVertex.searchRef(new Vertex<>(v));
         Vertex<E> end = listVertex.searchRef(new Vertex<>(z));
         if (start == null || end == null) return null;
+
+        Map<Vertex<E>, Vertex<E>> padre = new HashMap<>();
+        ListLinked<Vertex<E>> visit = new ListLinked<>();
+        Queue<Vertex<E>> queue = new LinkedList<>();
+
+        queue.offer(start);
+        visit.insert_Sig(start);
+        padre.put(start, null);
         
     }
 
