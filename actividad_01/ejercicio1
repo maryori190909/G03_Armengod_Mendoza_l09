@@ -133,7 +133,24 @@ public class GraphLink<E> {
         queue.offer(start);
         visit.insert_Sig(start);
         padre.put(start, null);
-        
+
+
+        while (!queue.isEmpty()) {
+        Vertex<E> actual = queue.poll();
+        if (actual.equals(end)) break;
+
+        Node<Edge<E>> vecino = actual.getListAdj().getHead();
+        while (vecino != null) {
+            Vertex<E> dest = vecino.data.getRefDest();
+            if (!visit.search(dest)) {
+                queue.offer(dest);
+                vecino.insert_Sig(dest);
+                padre.put(dest, actual);
+            }
+            vecino = vecino.next;
+        }
+        }
+
     }
 
 }
