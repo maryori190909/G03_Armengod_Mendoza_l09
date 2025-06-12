@@ -158,5 +158,23 @@ public class GraphAnalyzer <E> {
         return visitados.size() == grafo.listVertex.size();
     }
 
+    public boolean esIsomorfo(GraphLink<E> otro) {
+        return grafo.listVertex.size() == otro.listVertex.size() && grafo.countEdges() == otro.countEdges();
+    }
+
+    public boolean esPlano() {
+        int n = grafo.listVertex.size();
+        int a = grafo.countEdges();
+        return a <= (3 * n - 6);
+    }
+
+    public boolean esAutoComplementario() {
+        int n = grafo.listVertex.size();
+        int m = grafo.countEdges();
+        int complementarias = (n * (n - 1)) / 2 - m;
+        return m == complementarias;
+    }
+
+
 
 }
