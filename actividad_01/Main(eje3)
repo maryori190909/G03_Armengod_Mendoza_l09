@@ -1,1 +1,30 @@
+import graph.*;
+import java.util.*;
 
+public class Main {
+    public static void main(String[] args) {
+        GraphListEdge<String, String> grafo = new GraphListEdge<>();
+
+        grafo.insertVertex("A");
+        grafo.insertVertex("B");
+        grafo.insertVertex("C");
+        grafo.insertVertex("D");
+
+        grafo.insertEdge("A", "B");
+        grafo.insertEdge("A", "C");
+        grafo.insertEdge("B", "D");
+        grafo.insertEdge("C", "D");
+
+        grafo.insertEdge("A", "B");
+
+        System.out.println("Grafo creado");
+        grafo.printGraph();
+
+        System.out.println("\nExiste el vertice A? " + grafo.searchVertex("A"));
+        System.out.println("Existe la arista A-D? " + grafo.searchEdge("A", "D"));
+        System.out.println("Existe la arista C-D? " + grafo.searchEdge("C", "D"));
+
+        System.out.println("\nRecorrido BFS desde A:");
+        grafo.bfs("A");
+    }
+}
