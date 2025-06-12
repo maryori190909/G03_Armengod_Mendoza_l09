@@ -151,6 +151,14 @@ public class GraphLink<E> {
         }
         }
 
+        ArrayList<E> path = new ArrayList<>();
+        if (!padre.containsKey(end)) return path;
+
+        for (Vertex<E> at = end; at != null; at = padre.get(at)) {
+            path.add(0, at.getData());
+        }
+        return path;
+
     }
 
 }
