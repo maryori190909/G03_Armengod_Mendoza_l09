@@ -187,6 +187,24 @@ public class GraphLink<E> {
 
     dist.put(start, 0);
     pq.add(start);
+
+    while (!pq.isEmpty()) {
+        Vertex<E> actual = pq.poll();
+        Node<Edge<E>> vecino = actual.getListAdj().getHead();
+        while (vecino != null) {
+            Vertex<E> vecino = vecino.data.getRefDest();
+            int weight = vecino.data.getWeight();
+            int alt = dist.get(actual) + weight;
+
+            if (alt < dist.getOrDefault(vecino, Integer.MAX_VALUE)) {
+                dist.put(vecino, alt);
+                prev.put(vecino, actual);
+                pq.remove(vecino);
+                pq.add(vecino);
+            }
+            vecino = vecino.next;
+        }
+    }
         
     }
 
