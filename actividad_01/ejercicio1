@@ -205,6 +205,12 @@ public class GraphLink<E> {
             vecino = vecino.next;
         }
     }
+
+    ArrayList<E> path = new ArrayList<>();
+    for (Vertex<E> at = end; at != null; at = prev.get(at)) {
+        path.add(0, at.getData());
+    }
+    return path;
         
     }
 
