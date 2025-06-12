@@ -93,5 +93,9 @@ public class GraphLink<E> {
         return listVertex.toString();
     }
 
+     public void bfs(E v) {
+        
+    }
+
 }
 
